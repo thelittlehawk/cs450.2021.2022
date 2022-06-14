@@ -5,16 +5,17 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { fetchDataAll } from "../../actions/app";
 
-const Details = ({ route, users }) => { 
-  const [user, setUser] = useState({});
+const Details = ({ route, episodes }) => { 
+  const [episode, setEpisode] = useState({});
   useEffect(() => {
     const { itemId } = route.params;
-    setUser(users[itemId]);
+    setEpisode(episodes[itemId]);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Username: {user.username}</Text>
+      <Text>Name: {episode.name}</Text>
+      <Text>Summary: {episode.summary}</Text>
     </View>
   );
 };
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    users: state.app.users,
+    episodes: state.app.episodes,
   };
 };
 

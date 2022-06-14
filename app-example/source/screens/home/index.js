@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { fetchDataAll } from "../../actions/app";
 
-const Home = ({ fetchDataAll, users, navigation }) => {
+const Home = ({ fetchDataAll, episodes, navigation }) => {
   useEffect(() => fetchDataAll(), []);
 
   const onPressHandler = (index) => {
@@ -15,9 +15,9 @@ const Home = ({ fetchDataAll, users, navigation }) => {
 
   return (
     <View style={styles.container}>
-      {users.map((u, index) => (
+      {episodes.map((episode, index) => (
         <View key={index} style={styles.usernameWrapper}>
-          <Text>{u.username}</Text>
+          <Text>{episode.name}</Text>
           <TouchableOpacity onPress={
             (e) => onPressHandler(index)
           }>
@@ -27,12 +27,13 @@ const Home = ({ fetchDataAll, users, navigation }) => {
           </TouchableOpacity>
         </View>
       ))}
-      <TouchableOpacity
-        onPress={() => fetchDataAll()}
-        style={styles.refreshButton}
-      >
-        <Text>Refresh</Text>
-      </TouchableOpacity>
+      <TouchableOpacity onPress={
+          (e) => navigation.push("BestEpisodes")
+        }>
+          <div>
+            BEST EPPISODES
+          </div>
+        </TouchableOpacity>
     </View>
   );
 }
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    users: state.app.users,
+    episodes: state.app.episodes,
   };
 };
 
