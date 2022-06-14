@@ -1,12 +1,7 @@
 import { FETCH_ALL_DATA } from "../constants/app";
 
 const initialState = {
-  users: [],
-  sensors: [
-    {
-      name: "Tesaa",
-    }
-  ]
+  episodes: []
 };
 
 export const app = (state = initialState, action) => {
@@ -14,7 +9,7 @@ export const app = (state = initialState, action) => {
     case FETCH_ALL_DATA:
       return {
         ...state,
-        users: action.data,
+        episodes: action.data,
       };
     default:
       return state;
